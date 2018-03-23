@@ -17,13 +17,13 @@ class persistenciaModelo implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql = 'INSERT INTO Modelo VALUE (:descricao, :potencia, :marca);';
+        $sql = 'INSERT INTO Modelo VALUE (null, :descricao, :potencia, :marca);';
 
         $statement = $pdo->prepare($sql);
 
         $statement->bindValue(':descricao', $objeto->getDescricao(), PDO::PARAM_STR);
         $statement->bindValue(':potencia', $objeto->getPotencia(), PDO::PARAM_STR);
-        $statement->bindValue(';marca', $objeto->getMarca(), PDO::PARAM_STR);
+        $statement->bindValue(':marca', $objeto->getMarca(), PDO::PARAM_STR);
 
         $statement->execute();
     }
@@ -36,10 +36,10 @@ class persistenciaModelo implements Dao
 
         $statement = $pdo->prepare($sql);
 
-        $statement->bindValue(':idModelo', $objeto->getIdModelo(), PDO::PARAM_STR);
+        $statement->bindValue(':idModelo', $objeto->getIdModelo(), PDO::PARAM_INT);
         $statement->bindValue(':descricao', $objeto->getDescricao(), PDO::PARAM_STR);
         $statement->bindValue(':potencia', $objeto->getPotencia(), PDO::PARAM_STR);
-        $statement->bindValue(';marca', $objeto->getMarca(), PDO::PARAM_STR);
+        $statement->bindValue(':marca', $objeto->getMarca(), PDO::PARAM_STR);
 
         $statement->execute();
     }

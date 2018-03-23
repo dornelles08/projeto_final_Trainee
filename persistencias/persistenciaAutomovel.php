@@ -17,7 +17,7 @@ class persistenciaAutomovel implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql = 'INSERT INTO Automoveis VALUE (:ano_fabricacao, :ano_modelo, :observacoes, :preco, :kilometragem, :modelo);';
+        $sql = 'INSERT INTO Automoveis VALUE (null, :ano_fabricacao, :ano_modelo, :observacoes, :preco, :kilometragem, :modelo);';
 
         $statement = $pdo->prepare($sql);
 
@@ -35,18 +35,18 @@ class persistenciaAutomovel implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql = 'UPDATE Automoveis SET ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, observacao = :observacao, preco = :preco,
-                kilometragem = :kilometragem, modelo = :modelo WHERE idAutomovel = :idAltomovel;';
+        $sql = 'UPDATE Automoveis SET ano_fabricacao = :ano_fabricacao, ano_modelo = :ano_modelo, observacoes = :observacoes, preco = :preco,
+                kilometragem = :kilometragem, modelo = :modelo WHERE idAutomovel = :idAutomovel;';
 
         $statement = $pdo->prepare($sql);
 
-        $statement->bindValue(':idAutomovel', $objeto->getIdAutomovel(), PDO::PARAM_STR);
-        $statement->bindValue(':ano_fabricacao', $objeto->getAnoFabricacao(), PDO::PARAM_STR);
-        $statement->bindValue(':ano_modelo', $objeto->getAnoModelo(), PDO::PARAM_STR);
-        $statement->bindValue(':observacao', $objeto->getObservacoes(), PDO::PARAM_STR);
+        $statement->bindValue(':idAutomovel', $objeto->getIdAutomovel(), PDO::PARAM_INT);
+        $statement->bindValue(':ano_fabricacao', $objeto->getAnoFabricacao(), PDO::PARAM_INT);
+        $statement->bindValue(':ano_modelo', $objeto->getAnoModelo(), PDO::PARAM_INT);
+        $statement->bindValue(':observacoes', $objeto->getObservacoes(), PDO::PARAM_STR);
         $statement->bindValue(':preco', $objeto->getPreco(), PDO::PARAM_STR);
-        $statement->bindValue(':kilometragem', $objeto->getKilometragem(), PDO::PARAM_STR);
-        $statement->bindValue(':modelo', $objeto->getModelo(), PDO::PARAM_STR);
+        $statement->bindValue(':kilometragem', $objeto->getKilometragem(), PDO::PARAM_INT);
+        $statement->bindValue(':modelo', $objeto->getModelo(), PDO::PARAM_INT);
 
         $statement->execute();
 

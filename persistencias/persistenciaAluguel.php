@@ -17,7 +17,7 @@ class persistenciaAluguel implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql = 'INSERT INTO Aluguel VALUES (:cliente, :automovel, :valor, :dataAluguel, :multa, :dataDevolucao);';
+        $sql = 'INSERT INTO Aluguel VALUES (null, :cliente, :automovel, :valor, :dataAluguel, :multa, :dataDevolucao);';
 
         $statement = $pdo->prepare($sql);
 
@@ -35,14 +35,14 @@ class persistenciaAluguel implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql = 'UPDATE Aluguel SET cliente = :cliente, automovel = :automovel, valor = :valor, dataAluguel = :dataAluguel, multa = :multa, dataDevolucao = :dataDevolucao WHERE idAlugue = :idAluguel;';
+        $sql = 'UPDATE Aluguel SET cliente = :cliente, automovel = :automovel, valor = :valor, dataAluguel = :dataAluguel, multa = :multa, dataDevolucao = :dataDevolucao WHERE idAluguel = :idAluguel;';
 
         $statement = $pdo->prepare($sql);
 
-        $statement->bindValue(':idAluguel', $objeto->getIdAluguel(), PDO::PARAM_STR);
+        $statement->bindValue(':idAluguel', $objeto->getIdAluguel(), PDO::PARAM_INT);
         $statement->bindValue(':cliente', $objeto->getCliente(), PDO::PARAM_STR);
         $statement->bindValue(':automovel', $objeto->getAutomovel(), PDO::PARAM_STR);
-        $statement->bindValue(':valor', $objeto->getValor(), PDO::PARAM_STR);
+        $statement->bindValue(':valor', $objeto->getValor(), PDO::PARAM_INT);
         $statement->bindValue(':dataAluguel', $objeto->getDataAluguel(), PDO::PARAM_STR);
         $statement->bindValue(':multa', $objeto->getMulta(), PDO::PARAM_STR);
         $statement->bindValue(':dataDevolucao', $objeto->getDataDevolucao(), PDO::PARAM_STR);

@@ -37,6 +37,7 @@ if(isset($_POST['atualizar']) && $_POST['atualizar'] == "Atualizar"){
             require_once ("../persistencias/persistenciaAutomovel.php");
             $automovel = new Automovel($_POST['id'], $_POST['ano_fabricacao'], $_POST['ano_modelo'], $_POST['observacoes'], $_POST['preco'], $_POST['kilometragem'], $_POST['modelo']);
             persistenciaAutomovel::editar($automovel);
+            //var_dump($automovel);
             header("Location: ../views/viewAutomovel.php");
             break;
     }

@@ -36,17 +36,16 @@ class persistenciaUsuario implements Dao
     {
         $pdo = ConexaoBD::conectar();
 
-        $sql ='UPDATE Usuario SET nome = :nome, telefone = :telefone, email = :email, login = :login, senha = :senha WHERE cdf = :cpf;';
+        $sql ='UPDATE Usuario SET nome = :nome, telefone = :telefone, email = :email, login = :login, senha = :senha WHERE cpf = :cpf;';
 
         $statement = $pdo->prepare($sql);
 
         $statement->bindValue(':nome', $objeto->getNome(), PDO::PARAM_STR);
-        $statement->bindValue(':cdf', $objeto->getCpf() ,PDO::PARAM_STR);
+        $statement->bindValue(':cpf', $objeto->getCpf() ,PDO::PARAM_STR);
         $statement->bindValue(':telefone', $objeto->getTelefone() ,PDO::PARAM_STR);
         $statement->bindValue(':email', $objeto->getEmail() ,PDO::PARAM_STR);
         $statement->bindValue(':login', $objeto->getLogin() ,PDO::PARAM_STR);
         $statement->bindValue(':senha', $objeto->getSenha() ,PDO::PARAM_STR);
-        $statement->bindValue(':isAdmin', $objeto->getIsAdmin() ,PDO::PARAM_STR);
 
         $statement->execute();
     }

@@ -17,7 +17,7 @@ class persistenciaMarca implements Dao
     {
         $pdo= ConexaoBD::conectar();
 
-        $sql = 'INSERT INTO Marca VALUES (:nome);';
+        $sql = 'INSERT INTO Marca VALUES (null, :nome);';
 
         $statement = $pdo->prepare($sql);
 

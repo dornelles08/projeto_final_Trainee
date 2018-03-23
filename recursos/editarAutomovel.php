@@ -14,7 +14,7 @@ session_start();
     $automovel = persistenciaAutomovel::buscar($automovel);
 ?>
 <form method="POST" action="../controllers/proc_editar.php?tabela=automovel">
-    ID: <label name="id"> <?php echo $automovel->getIdAutomovel() ?> </label> <br>
+    <input type="hidden" name="id" value="<?php echo $automovel->getIdAutomovel() ?>"/>
     Modelo: <select name="modelo">
 
         <?php

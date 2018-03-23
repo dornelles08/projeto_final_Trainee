@@ -14,7 +14,7 @@ session_start();
     $marca = persistenciaMarca::buscar($marca);
 ?>
 <form method="POST" action="../controllers/proc_editar.php?tabela=marca">
-    ID: <label name="id"><?php echo $marca->getIdMarca() ?></label> <br>
+    <input type="hidden" name="id" value="<?php echo $marca->getIdMarca() ?>">
     Nome: <input type="text" name="nome" value="<?php echo $marca->getNome()?>"> <br><br>
     <input type="submit" name="atualizar" value="Atualizar">
 </form>

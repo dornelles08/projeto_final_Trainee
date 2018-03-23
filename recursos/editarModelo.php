@@ -14,7 +14,7 @@ session_start();
     $modelo = persistenciaModelo::buscar($modelo);
 ?>
 <form method="POST" action="../controllers/proc_editar.php?tabela=modelo">
-    ID: <label name="id"><?php echo $modelo->getIdModelo() ?></label> <br>
+    <input type="hidden" name="id" value="<?php echo $modelo->getIdModelo() ?>">
     Descrição: <input type="text" name="descricao" value="<?php echo $modelo->getDescricao() ?>"> <br>
     Potência: <input type="text" name="potencia" value="<?php echo $modelo->getPotencia() ?>"> <br>
     Marca:
